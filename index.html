@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Практика Selenium</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Практика с ожиданиями в Selenium</h1>
+  <button id="startTest" class="hidden">Начать тестирование</button>
+
+  <div id="registrationForm" class="hidden">
+    <label for="login">Логин:</label>
+    <input type="text" id="login">
+    <br>
+    <label for="password">Пароль:</label>
+    <input type="password" id="password">
+    <br>
+    <label>
+      <input type="checkbox" id="agree"> Согласен со всеми правилами
+    </label>
+    <br>
+    <button id="register">Зарегистрироваться</button>
+  </div>
+
+  <div id="loader" class="hidden">Загрузка...</div>
+  <p id="successMessage" class="hidden">Вы успешно зарегистрированы!</p>
+
+  <script src="script.js"></script>
+</body>
+</html>
