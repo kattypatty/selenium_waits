@@ -2,8 +2,12 @@ from selenium.webdriver.support.ui import WebDriverWait
 from locators.login_locators import LoginPage_Locators
 from locators.src.user_data import UserData
 from selenium.webdriver.support import expected_conditions as EC
+from dotenv import load_dotenv
+import os
 import pytest
 import time
+
+load_dotenv()
 
 class LoginPage():
     user = UserData()
@@ -45,8 +49,8 @@ class LoginPage():
     def filling_form(self):
         input_login = self.element_is_visible(LoginPage_Locators.LOGIN)
         input_password = self.element_is_visible(LoginPage_Locators.PASSWORD)
-        input_login.send_keys(self.user.login)
-        input_password.send_keys(self.user.password)
+        input_login.send_keys(os.getenv("LOGIN"))
+        input_password.send_keys(os.getenv("PASSWORD"))
 
     def registration_form_appeared(self, locator):
         return self.wait.until(EC.visibility_of_element_located(locator))
