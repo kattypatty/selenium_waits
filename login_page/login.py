@@ -2,8 +2,10 @@ from selenium.webdriver.support.ui import WebDriverWait
 from locators.login_locators import LoginPage_Locators
 from locators.src.user_data import UserData
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait as wait
 from dotenv import load_dotenv
 import os
+from selenium.webdriver import ActionChains
 import pytest
 import time
 
@@ -11,6 +13,7 @@ load_dotenv()
 
 class LoginPage():
     user = UserData()
+    timeout = 5
     
     def __init__(self, driver, url):
         self.driver = driver
@@ -42,8 +45,8 @@ class LoginPage():
 
         self.checking_loading()
 
-        return self.checking_for_success_message()
-        
+        return self.checking_for_success_message()   
+       
 
     # Fill in the Registration Form
     def filling_form(self):
@@ -65,6 +68,22 @@ class LoginPage():
     def element_is_visible(self, locator):
         return self.wait.until(EC.visibility_of_element_located(locator))
     
+    # checking an element is visible and enabled such that you can click it
+    def element_is_clickable(self, locator, timeout=timeout):
+        return wait(self.driver, timeout).until(EC.element_to_be_clickable(locator))
+    
     # getting text to check the actual title of the home page
     def get_text(self, locator):
         return self.element_is_visible(locator).text
+    
+    # double click on the button
+    def double_click(self, element):
+        action = ActionChains(self.driver)
+        action.double_click(element)
+        action.perform()
+
+    # right click on the button
+    def right_click(self, element):
+        action = ActionChains(self.driver)
+        action.context_click(element)
+        action.perform()

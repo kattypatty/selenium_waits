@@ -14,3 +14,7 @@
 7. Confirm registration: Click the "Register" button.
 8. Checking loading: Make sure that the loading indicator appears.
 9. Checking the message: Make sure that after the download is complete, the message “You have successfully registered!” appears.
+
+# Practice with Selenium
+1. Clicking buttons https://demoqa.com/buttons
+2. 
