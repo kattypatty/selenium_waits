@@ -1,6 +1,5 @@
 from selenium.webdriver.support.ui import WebDriverWait
 from locators.login_locators import LoginPage_Locators
-from locators.src.user_data import UserData
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait as wait
 from dotenv import load_dotenv
@@ -12,13 +11,12 @@ import time
 load_dotenv()
 
 class LoginPage():
-    user = UserData()
     timeout = 5
     
     def __init__(self, driver, url):
         self.driver = driver
         self.url = url
-        self.wait = WebDriverWait(driver, timeout=10)
+        self.wait = WebDriverWait(driver, timeout=30)
         self.open()
 
     # opening webrowser
@@ -60,6 +58,10 @@ class LoginPage():
     
     def checking_loading(self):
         return self.element_is_visible(LoginPage_Locators.LOADING_INDICATOR)
+    
+    # click on any button
+    def click_on_element(self, locator):
+        return self.wait.until(EC.visibility_of_element_located(locator)).click()
 
     def checking_for_success_message(self):
         return self.get_text(LoginPage_Locators.SUCCESSFUL_MESSAGE)
@@ -87,3 +89,10 @@ class LoginPage():
         action = ActionChains(self.driver)
         action.context_click(element)
         action.perform()
+    
+    def drag_and_drop(self, drag_elem, drop_elem):
+        action = ActionChains(self.driver)
+        action.drag_and_drop(drag_elem, drop_elem)
+        action.perform()
+
+
